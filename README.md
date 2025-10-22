@@ -1,19 +1,22 @@
-# HNG Internship Stage 0 - DevOps Track
+# HNG Internship - DevOps Track
 
 ## Personal Information
-- **Name:** [Gloria Njoku]
-- **Slack Username:** [Gloria]
+- **Name:** Gloria Njoku
+- **Slack Username:** Gloria
 - **Track:** DevOps
 
-## Project Description
-This project involves deploying a simple web server using NGINX as part of the HNG Internship Stage 0 task. The server serves a custom HTML page and demonstrates basic DevOps deployment skills.
+## Stage 0 - Web Server Deployment
+- **Status:** ✅ Completed - Automatically Promoted
 
-## Server Information
-- **Server IP/Domain:** [http://13.51.206.54]
-- **Deployment Platform:** [AWS EC2]
-- **Status:** ✅ Live
+## Stage 1 - Automated Deployment Script
+- **Script:** [deploy.sh](./deploy.sh)
+- **Features:** 
+  - Docker container deployment
+  - Nginx reverse proxy configuration
+  - Remote server automation
+  - Comprehensive logging
+- **Test Server:** http://:13.53.106.215:3000/
+- **Status:** ✅ Completed
 
-## Technologies Used
-- NGINX Web Server
-- Cloud Platform (AWS)
-- Linux Ubuntu/CentOS
+## Technologies
+- AWS EC2, Docker, Nginx, Bash Scripting

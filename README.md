@@ -1,30 +1,20 @@
-\# HNG Stage 2 - Blue/Green Deployment with Nginx
+# HNG Internship - DevOps Track
 
+## Personal Information
+- **Name:** Gloria Njoku
+- **Slack Username:** Gloria
+- **Track:** DevOps
 
+## Stage 0 - Web Server Deployment
+- **Status:** ✅ Completed - Automatically Promoted
 
-\## Overview
+## Stage 1 - Automated Deployment Script  
+- **Script:** [deploy.sh](./deploy.sh)
+- **Status:** ✅ Completed - 95% Score
 
-This project implements a Blue/Green deployment strategy with automatic failover using Nginx upstreams.
+## Stage 2 - Blue/Green Deployment
+- **Files:** docker-compose.yml, nginx.conf, .env.example
+- **Features:** Automatic failover, chaos testing, zero-downtime
+- **Status:** ✅ Completed
 
-
-
-\## Architecture
-
-\- \*\*Nginx\*\* (Port 8080): Reverse proxy with failover logic
-
-\- \*\*Blue App\*\* (Port 8081): Primary application instance
-
-\- \*\*Green App\*\* (Port 8082): Backup application instance
-
-
-
-\## Quick Start
-
-
-
-1\. \*\*Copy environment file:\*\*
-
-&nbsp;  ```bash
-
-&nbsp;  cp .env.example .env
 

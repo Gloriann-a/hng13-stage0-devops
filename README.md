@@ -26,19 +26,19 @@ git clone <your-repo-url>
 cd bluegreen-deploy
 
 
-Copy environment file
+2 Copy environment file
 
 cp .env.example .env
 
 
 Edit .env to set your Docker image names and active pool if needed.
 
-Start containers
+3 Start containers
 
 docker compose up -d
 
 
-Check endpoints
+4 Check endpoints
 
 # Nginx (frontend)
 curl -I localhost:8080
@@ -59,9 +59,10 @@ Nginx configuration uses envsubst to inject variables from .env.
 
 Optional
 
-You can simulate errors for chaos testing:
+5 You can simulate errors for chaos testing:
 
 curl -X POST http://localhost:8081/chaos/start?mode=error
 curl -X POST http://localhost:8082/chaos/stop
+
 
 

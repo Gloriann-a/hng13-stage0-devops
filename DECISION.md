@@ -1,54 +1,38 @@
-\# Architecture Decisions - HNG Stage 2
+
+---
+
+## **DECISION.md**
+
+```markdown
+# Design Decisions
+
+## 1. Blue/Green Deployment
+- Two separate app containers (`app_blue` and `app_green`) running on ports 8081 and 8082.
+- Nginx routes traffic based on the `ACTIVE_POOL` environment variable.
+
+## 2. Nginx Configuration
+- Upstreams defined for `blue_backend` and `green_backend`.
+- Uses a `map` block to select active backend dynamically.
+- Proxy settings include timeouts, error handling, and retries:
+  - `proxy_next_upstream` ensures auto-failover if an upstream fails.
+  - Timeouts are set for connecting, sending, and receiving.
+
+## 3. Docker Compose
+- Defines services for `nginx`, `app_blue`, and `app_green`.
+- Uses `.env` variables for image names and release IDs.
+
+## 4. Environment Management
+- `.env` defines images and release IDs.
+- `.env.example` provided for submission without secrets.
+
+## 5. Challenges
+- Initial Nginx 404 issues due to default `index` file.
+- Resolved by correctly proxying `/version` and `/healthz` endpoints.
+- Ensured Nginx template (`nginx.conf.template`) works with envsubst.
+
+## 6. Notes
+- Optional chaos testing endpoints exist in each app container.
+- Nginx logs and `curl` commands can be used to verify traffic routing.
 
 
-
-\## Design Choices
-
-
-
-\### 1. Nginx Upstream Configuration
-
-\- Used `max\_fails=2` and `fail\_timeout=10s` for quick failure detection
-
-\- Designated Green as `backup` to only activate when Blue fails
-
-\- This ensures zero failed client requests during failover
-
-
-
-\### 2. Failover Strategy
-
-\- `proxy\_next\_upstream` configured to retry on errors, timeouts, and 5xx status codes
-
-\- Fast timeouts (2s connect, 5s read) for rapid failure detection
-
-\- `proxy\_buffering off` ensures real-time response during failover
-
-
-
-\### 3. Health Checking
-
-\- Docker healthchecks monitor `/healthz` endpoint
-
-\- 5-second intervals with 3-second timeouts for responsive monitoring
-
-\- 2 retries before marking container as unhealthy
-
-
-
-\### 4. Header Preservation
-
-\- Configured to forward all application headers unchanged
-
-\- This preserves `X-App-Pool` and `X-Release-Id` headers as required
-
-
-
-\## Trade-offs
-
-\- Faster failover means potentially more false positives
-
-\- Simple backup strategy vs more complex load balancing
-
-\- Focused on reliability over advanced features
 
